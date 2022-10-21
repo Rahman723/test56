@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <title>Vue.js Pet Depot</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body style="font-family: sans-serif; background-color: #fffdd0;">
+        <div id="app">
+            <header>
+                <h1 v-text="sitename"></h1>
+            </header>
+            <main>
+                <div style="display: inline-block; margin: 10px; width: 310px; height: 220px; border:1px solid black; border-radius: 10%; padding: 10px; background-color: #617c58;">
+                    <div style="width: 150px; height: 160px; display: inline-block;">
+                        <h2 v-text="product.title"></h2>
+                        <p v-html="product.location"></p>
+                        <p>Price: {{product.price}}</p>
+                        <p>Space: {{product.space}}</p>
+                        <button id='button' v-on:click="addToCart">Add to Cart</button>
+                    </div>
+                    <div style="width: 150px; height: 160px; display: inline-block;">
+                        <figure>
+                            <img v-bind:src="product.image" width="100%">
+                        </figure>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+        <script type="text/javascript">
+            var webstore=new Vue({
+                el: '#app',
+                data: {
+                    sitename: 'Vue.js School',
+                    product: {
+                        id: 1001,
+                        title: "Biology",
+                        location: "Dubai",
+                        price: 2000,
+                        image: "images/Biology.png",
+                        space: 7
+                    },
+                    cart: [],
+                },
+                methods: {
+                    addToCart: function() {
+                        let newS=this.product.space;
+                        if (newS>0){
+                            this.product.space=(newS-1);
+                            this.cart.push(this.product.id);
+                        }
+                        if (this.product.space==0){
+                            document.getElementById("button").style.visibility="hidden";
+                        }
+                    
+                    }
+                }
+                //lol
+            })
+        </script>
+    </body>
+</html>
