@@ -7,7 +7,7 @@
     <body style="font-family: sans-serif; background-color: #fffdd0;">
         <div id="app">
             <header>
-                <h1 v-text="sitename"></h1>
+                <h1 v-text="sitename"></h1><!--Cart button to go to chekout page-->
                 <button v-on:click="showCheckout" v-bind:disabled="!cartItemCount">
                     {{cartItemCount}}
                     <span class="fas fa-cart-plus" style="font-size: 30px;"></span>
@@ -16,7 +16,7 @@
             </header>
             <main>
                 <div v-if="showProduct" >
-                    <div>
+                    <div><!--Choosing the order of displayed items(ascending or descending)-->
                         <div>
                             <input class="form-check-input" value="Ascending" type="radio" id="ascending"
                                 v-model="lowHigh" />
@@ -31,13 +31,13 @@
                     <form>
                         <div>
                             <div>
-                                <div>
+                                <div><!--Search input-->
                                     <input type="text" v-model="searchInput"
                                         placeholder="Search Course">
                                 </div>
                             </div>
                             <div>
-                                <div>
+                                <div><!--div for choosing the sorting method-->
                                     <select name="sortBy" v-model="sortBy">
                                         <option>--Sort By--</option>
                                         <option value="price">Price</option>
@@ -50,6 +50,7 @@
 
                         </div>
                     </form>
+                    <!--Displaying all the courses-->
                     <div v-for="product in filterProducts()" style="display: inline-block; margin: 10px; width: 310px; height: 220px; border:1px solid black; border-radius: 10%; padding: 10px; background-color: #617c58;">
                         <div style="width: 150px; height: 160px; display: inline-block;">
                         <h2 v-text="product.title"></h2>
@@ -67,6 +68,7 @@
                 </div>
                 <div v-else>
                     <h1>Checkout</h1>
+                    <!--List of products in the cart-->
                     <div v-for="product in removeDuplicates(cart)" style="display: inline-block; margin: 10px; width: 310px; height: 220px; border:1px solid black; border-radius: 10%; padding: 10px; background-color: #617c58;">
                         <div style="width: 150px; height: 160px; display: inline-block;">
                         <h2 v-text="product.title"></h2>
@@ -94,7 +96,7 @@
                         <input type="number" max="10" v-model="order.phone">
                     </p>
                     
-
+                    <!--Information that is displayed about the customer-->
                     <h2>Order Info</h2>
                     <p>First Name: {{order.firstName}}</p>
                     <p>Last Name: {{order.lastName}}</p>
@@ -132,19 +134,19 @@
                     }
                 },
                 methods: {
-                    addToCart(product) {
+                    addToCart(product) { //adding item to the cart
                         this.cart.push(product)
                         product.space -= 1
                         console.log(this.cart)
                     },
-                    showCheckout(){
+                    showCheckout(){//fumction to show or hide checkout page
                         this.showProduct=this.showProduct ? false : true;
                     },
-                    checkOut() {
+                    checkOut() {//checkout page
                         let show = this.cart
                         return show
                     },
-                    submitForm(){
+                    submitForm(){//placing order function
                         alert("ORDER SUBMITTED !!!");
                     },
                     sortByPrice: function (priceArray) {
