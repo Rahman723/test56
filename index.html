@@ -187,7 +187,7 @@
                     }
                     return avaArray.sort(compare);
                 },
-                    filterProducts: function () {
+                    filterProducts: function () { //sorting by price, Title, space, and location 
                     let tempProducts = this.products
 
                     tempProducts = tempProducts.filter((product) => {
@@ -196,7 +196,7 @@
                     if (this.sortBy == 'price') {
                         tempProducts = this.sortByPrice(tempProducts)
                     }
-                    else if (this.sortBy == 'Title') {
+                    else if (this.sortBy == 'title') {
                         tempProducts = this.sortByTitle(tempProducts)
                     }
                     else if (this.sortBy == 'location') {
@@ -214,7 +214,7 @@
                     }
                     return tempProducts
                 },
-                cartCount(id){
+                cartCount(id){ //counts quantity of items in the cart
                     let count = 0
                     for (let i = 0; i < this.cart.length;i++){
                         if(this.cart[i].id === id){
@@ -223,7 +223,7 @@
                     }
                     return count;
                 },
-                removeDuplicates(arr) {
+                removeDuplicates(arr) { //clears the check out info by removing the same course that is duplicated
                     var unique = [];
                     arr.forEach(element => {
                         if (!unique.includes(element)) {
@@ -232,7 +232,7 @@
                     });
                     return unique;
                 },
-                removeFromCart(id) {
+                removeFromCart(id) { //removes items from the cart
                     let showCart = this.cart
                     let less = this.products
                     for (let i = 0; i < showCart.length; i++) {
@@ -252,7 +252,7 @@
                 },
                 },
                 computed: {
-                    cartItemCount: function(){
+                    cartItemCount: function(){ //counts how many items in  the cart 
                         return this.cart.length
                     }
                 }
